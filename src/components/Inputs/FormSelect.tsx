@@ -2,7 +2,7 @@ import Autocomplete, { AutocompleteRenderInputParams } from '@mui/material/Autoc
 import { Controller, useFormContext, FieldValues, Path, ControllerRenderProps } from 'react-hook-form';
 import { FormControl, TextField, Tooltip, CircularProgress, FormHelperText } from '@mui/material';
 import { get } from 'lodash';
-import { SyntheticEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { SyntheticEvent, UIEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 interface Option {
@@ -139,7 +139,7 @@ interface AsyncFieldProps<TFieldValues extends FieldValues> {
   }>;
   fetchOptionById: (id: number) => Promise<{ data: Option }>;
   id?: string;
-  onChangeOverride?: (...event: any[]) => void;
+  onChangeOverride?: (...event: unknown[]) => void;
   disabled?: boolean;
 }
 
@@ -180,7 +180,6 @@ export const AsyncField = <T extends FieldValues>({
         });
         setTotalPages(result.totalPages);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(error);
       } finally {
         setLoading(false);
@@ -199,7 +198,6 @@ export const AsyncField = <T extends FieldValues>({
         setInputValue(result.data.label);
       } catch (error) {
         setSelectedOption(null);
-        // eslint-disable-next-line no-console
         console.error(error);
       } finally {
         setLoading(false);
@@ -220,7 +218,7 @@ export const AsyncField = <T extends FieldValues>({
 
   // Handle infinite scrolling
   const handleScroll = useCallback(
-    (event: React.UIEvent<HTMLUListElement>) => {
+    (event: UIEvent<HTMLUListElement>) => {
       const listboxNode = event.currentTarget;
       if (
         listboxNode.scrollTop + listboxNode.clientHeight >= listboxNode.scrollHeight - 1 &&

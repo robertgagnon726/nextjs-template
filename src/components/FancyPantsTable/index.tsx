@@ -20,7 +20,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { Fragment, useCallback, useState } from 'react';
+import { ChangeEvent, Fragment, useCallback, useState } from 'react';
 import { v4 } from 'uuid';
 import { Identifiable, SelectAction, FancyPantsTableColumn, FancyPantsTableProps } from './types';
 // import { ESortOrder, Filter } from '@/generated/api-client';
@@ -146,7 +146,7 @@ export function FancyPantsTable<T extends Identifiable>({
   );
 
   const handleSelectAllClick = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked && selectableGateFieldName) {
         const newSelected = rows?.filter((r) => r[selectableGateFieldName]);
         if (newSelected) {
@@ -162,7 +162,7 @@ export function FancyPantsTable<T extends Identifiable>({
 
   // Pagination change handler
   const handlePageChange = useCallback(
-    (_: React.ChangeEvent<unknown>, page: number) => {
+    (_: ChangeEvent<unknown>, page: number) => {
       if (pagination?.onPageChange) {
         pagination.onPageChange(page);
       }

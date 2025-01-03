@@ -3,9 +3,9 @@ import { ApiClient } from '@/ApiClient';
 /**
  * A helper type that extracts method names from an API factory.
  */
-type ApiMethods<T> = T extends { [key: string]: (...args: any[]) => any }
+type ApiMethods<T> = T extends { [key: string]: (...args: unknown[]) => unknown }
   ? {
-      [M in keyof T]?: (...args: any[]) => string;
+      [M in keyof T]?: (...args: unknown[]) => string;
     }
   : never;
 

@@ -3,7 +3,7 @@ import { Controller, useFormContext, FieldValues, Path, ControllerRenderProps } 
 import { FormControl, TextField, CircularProgress, FormHelperText } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import { get } from 'lodash';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { SyntheticEvent, UIEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 interface Option {
@@ -55,7 +55,7 @@ export function FormMultiSelect<TFieldValues extends FieldValues>({
 
   const onChange = useCallback(
     (field: ControllerRenderProps<TFieldValues, Path<TFieldValues>>) =>
-      (_event: React.SyntheticEvent, newValue: Option[]) => {
+      (_event: SyntheticEvent, newValue: Option[]) => {
         field.onChange(newValue.map((option) => option.value));
       },
     [],
@@ -169,7 +169,6 @@ const AsyncField = <T extends FieldValues>({
         });
         setTotalPages(result.totalPages);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(error);
       } finally {
         setLoading(false);
@@ -186,7 +185,6 @@ const AsyncField = <T extends FieldValues>({
         const result = await fetchOptionsByIds(field.value);
         setSelectedOptions(result.data);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(error);
       } finally {
         setLoading(false);
@@ -207,7 +205,7 @@ const AsyncField = <T extends FieldValues>({
 
   // Handle infinite scrolling
   const handleScroll = useCallback(
-    (event: React.UIEvent<HTMLUListElement>) => {
+    (event: UIEvent<HTMLUListElement>) => {
       const listboxNode = event.currentTarget;
       if (
         listboxNode.scrollTop + listboxNode.clientHeight >= listboxNode.scrollHeight - 1 &&
@@ -259,7 +257,7 @@ const AsyncField = <T extends FieldValues>({
   );
 
   const onInputChange = useCallback(
-    (event: React.SyntheticEvent, newInputValue: string) => {
+    (event: SyntheticEvent, newInputValue: string) => {
       if (event && event.type === 'change') {
         setInputValue(newInputValue);
       }
@@ -268,7 +266,7 @@ const AsyncField = <T extends FieldValues>({
   );
 
   const onChange = useCallback(
-    (_event: React.SyntheticEvent, newValue: Option[]) => {
+    (_event: SyntheticEvent, newValue: Option[]) => {
       field.onChange(newValue.map((option) => option.value));
     },
     [field],

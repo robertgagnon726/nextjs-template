@@ -4,7 +4,6 @@ import { Provider, useSelector } from 'react-redux';
 import { store, RootState } from '@/redux/store';
 import { usePathname, useRouter } from 'next/navigation';
 import { appActions } from '@/redux/slices/app-slice';
-import { GetUsersResponseDtoUser } from '@/generated/api-client';
 import { AlertProvider } from '@Components/Alert';
 import { PersistentDrawerLeft } from '@Connected-components/PersistentDrawerLeft';
 
@@ -46,7 +45,7 @@ mockUseSelector.mockImplementation((selector) => {
       ...store.getState().app,
       user: {
         roles: ['Admin'],
-      } as GetUsersResponseDtoUser,
+      },
     },
   };
   return selector(state);

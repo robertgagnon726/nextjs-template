@@ -1,22 +1,26 @@
 import { useState, useEffect } from 'react';
 import useSWR, { KeyedMutator } from 'swr';
-import { Filter, ESortOrder, QueryParamsRequestDto } from '@/generated/api-client';
 
 interface UseTableDataParams<T> {
-  fetcher: (params: QueryParamsRequestDto) => Promise<T | undefined>;
+  // fetcher: (params: QueryParamsRequestDto) => Promise<T | undefined>; // TODO FIX ME
+  fetcher: (params: FetcherParams) => Promise<T | undefined>;
   initialPage?: number;
   initialItemsPerPage?: number;
-  initialFilters?: Filter[];
+  // initialFilters?: Filter[]; // TODO FIX ME
+  initialFilters?: unknown[];
   initialSortBy?: string;
-  initialSortOrder?: ESortOrder;
+  // initialSortOrder?: ESortOrder; // TODO FIX ME
+  initialSortOrder?: unknown;
 }
 
 interface FetcherParams {
   page: number;
   limit: number;
-  filters: Filter[];
+  // filters: Filter[]; // TODO FIX ME
+  filters: unknown[];
   sortBy: string;
-  sortOrder: ESortOrder;
+  // sortOrder: ESortOrder; // TODO FIX ME
+  sortOrder: unknown;
 }
 
 interface UseTableDataReturn<T> {
@@ -27,12 +31,16 @@ interface UseTableDataReturn<T> {
   setPage: (page: number) => void;
   itemsPerPage: number;
   setItemsPerPage: (itemsPerPage: number) => void;
-  appliedFilters: Filter[];
-  setAppliedFilters: (filters: Filter[]) => void;
+  // appliedFilters: Filter[]; // TODO FIX ME
+  appliedFilters: unknown[];
+  // setAppliedFilters: (filters: Filter[]) => void; // TODO FIX ME
+  setAppliedFilters: (filters: unknown[]) => void;
   appliedSortBy: string;
   setAppliedSortBy: (sortBy: string) => void;
-  appliedSortOrder: ESortOrder;
-  setAppliedSortOrder: (sortOrder: ESortOrder) => void;
+  // appliedSortOrder: ESortOrder; // TODO FIX ME
+  appliedSortOrder: unknown;
+  // setAppliedSortOrder: (sortOrder: ESortOrder) => void; // TODO FIX ME
+  setAppliedSortOrder: (sortOrder: unknown) => void;
   mutate: KeyedMutator<T | undefined>;
 }
 
@@ -42,13 +50,16 @@ export function useTableData<T>({
   initialItemsPerPage = 25,
   initialFilters = [],
   initialSortBy = '',
-  initialSortOrder = ESortOrder.Asc,
+  // initialSortOrder = ESortOrder.Asc, // TODO FIX ME
+  initialSortOrder = '',
 }: UseTableDataParams<T>): UseTableDataReturn<T> {
   const [page, setPage] = useState(initialPage);
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
-  const [appliedFilters, setAppliedFilters] = useState<Filter[]>(initialFilters);
+  // const [appliedFilters, setAppliedFilters] = useState<Filter[]>(initialFilters); // TODO FIX ME
+  const [appliedFilters, setAppliedFilters] = useState<unknown[]>(initialFilters);
   const [appliedSortBy, setAppliedSortBy] = useState<string>(initialSortBy);
-  const [appliedSortOrder, setAppliedSortOrder] = useState<ESortOrder>(initialSortOrder);
+  // const [appliedSortOrder, setAppliedSortOrder] = useState<ESortOrder>(initialSortOrder); // TODO FIX ME
+  const [appliedSortOrder, setAppliedSortOrder] = useState<unknown>(initialSortOrder);
 
   const fetcherParams: FetcherParams = {
     page,

@@ -21,7 +21,7 @@ import { RootState } from '@/redux/store';
 import { appActions } from '@/redux/slices/app-slice';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useGlobalLoading } from '@Hooks/useGlobalLoading';
 import { AlertProvider } from '@Components/Alert';
 
@@ -142,7 +142,7 @@ interface NavDrawerProps {
  * NavDrawer component renders a persistent drawer on the left side of the screen.
  * The drawer displays different navigation sections based on the user's roles.
  */
-const NavDrawer = ({ drawerOpen, handleDrawerClose, handleRoutePush }: NavDrawerProps): JSX.Element => {
+const NavDrawer = ({ drawerOpen, handleDrawerClose, handleRoutePush }: NavDrawerProps) => {
   const theme = useTheme();
   const pathname = usePathname();
 

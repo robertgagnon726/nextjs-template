@@ -2,11 +2,11 @@ import { Main } from '@/components/Main';
 import { AlertProvider } from '@/components/Alert';
 import { Login } from '@Features/login/Login';
 
-const LoginPage = ({ params }: { params: { account: string } }) => {
+const LoginPage = () => {
   return (
     <AlertProvider>
       <Main>
-        <Login pageParams={params} />
+        <Login />
       </Main>
     </AlertProvider>
   );

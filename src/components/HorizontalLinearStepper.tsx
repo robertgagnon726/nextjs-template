@@ -6,13 +6,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import { Fragment, useCallback, useState } from 'react';
+import { Dispatch, Fragment, ReactNode, SetStateAction, useCallback, useState } from 'react';
 
 interface HorizontalLinearStepperProps {
   stepNames: string[];
-  stepContent: React.ReactNode;
+  stepContent: ReactNode;
   activeStep: number;
-  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+  setActiveStep: Dispatch<SetStateAction<number>>;
   stepperWidth?: number;
   nextDisabled?: boolean;
   primaryActionHandler: () => void;
@@ -44,7 +44,7 @@ export default function HorizontalLinearStepper({
       setLoading(true);
       await nextButtonPreHandler?.();
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    } catch (error) {
+    } catch {
       // Fail silently
     } finally {
       setLoading(false);
@@ -74,7 +74,7 @@ export default function HorizontalLinearStepper({
           {stepNames.map((label) => {
             const stepProps: { completed?: boolean } = {};
             const labelProps: {
-              optional?: React.ReactNode;
+              optional?: ReactNode;
             } = {};
             return (
               <Step key={label} {...stepProps}>

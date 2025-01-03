@@ -6,6 +6,7 @@ import { CssBaseline } from '@mui/material';
 import { ReduxProvider } from '@/redux/ReduxProvider';
 import { Metadata } from 'next';
 import theme from '@/theme';
+import { ReactNode } from 'react';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en" className={montserrat.className}>

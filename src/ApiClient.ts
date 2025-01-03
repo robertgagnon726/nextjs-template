@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
       try {
         Cookies.remove('access_token');
         window.location.href = `${process.env.NEXT_PUBLIC_WEB_BASE_URL}/${account}/login`;
-      } catch (error) {
+      } catch {
         window.location.href = `${process.env.NEXT_PUBLIC_WEB_BASE_URL}/${account}/login`;
       }
     }
@@ -42,7 +42,7 @@ axiosInstance.interceptors.response.use(
       try {
         Cookies.remove('access_token');
         window.location.href = `${process.env.NEXT_PUBLIC_WEB_BASE_URL}/${account}/login`;
-      } catch (error) {
+      } catch {
         window.location.href = `${process.env.NEXT_PUBLIC_WEB_BASE_URL}/${account}/login`;
       }
     }

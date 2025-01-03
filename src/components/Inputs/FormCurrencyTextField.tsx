@@ -1,6 +1,6 @@
 import { TextFieldProps, InputAdornment } from '@mui/material';
 import { Controller, ControllerRenderProps, FieldError, FieldValues, Path, useFormContext } from 'react-hook-form';
-import { useCallback } from 'react';
+import { ChangeEvent, FocusEvent, KeyboardEvent, useCallback } from 'react';
 import { CurrencyTextField } from '@/components/Inputs/CurrencyTextField';
 
 type BaseCurrencyFieldProps = {
@@ -13,7 +13,7 @@ interface FormCurrencyFieldProps<TFieldValues extends FieldValues> extends Omit<
   label: string;
 }
 
-export const preventInvalidChars = (e: React.KeyboardEvent<HTMLInputElement>) => {
+export const preventInvalidChars = (e: KeyboardEvent<HTMLInputElement>) => {
   const invalidChars = ['e', 'E', '+', '-', '*', '/', ' '];
   if (invalidChars.includes(e.key)) {
     e.preventDefault();
@@ -46,7 +46,7 @@ export const FormCurrencyField = <TFieldValues extends FieldValues>({
   };
 
   const handleOnChange = useCallback(
-    (onChange: (value: string) => void) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    (onChange: (value: string) => void) => (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value.replace(/[^0-9.-]+/g, '');
 
       onChange(value);
@@ -55,7 +55,7 @@ export const FormCurrencyField = <TFieldValues extends FieldValues>({
   );
 
   const handleOnBlur = useCallback(
-    (onChange: (value: string) => void) => (e: React.FocusEvent<HTMLInputElement>) => {
+    (onChange: (value: string) => void) => (e: FocusEvent<HTMLInputElement>) => {
       const formattedValue = formatCurrency(e.target.value);
 
       onChange(formattedValue);

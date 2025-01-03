@@ -1,6 +1,6 @@
 // import { ESortOrder, Filter } from '@/generated/api-client';
 import { AxiosPromise } from 'axios';
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface PaginationProps {
   totalItems: number;
@@ -10,7 +10,7 @@ export interface PaginationProps {
 }
 
 export interface FilterSortProps {
-  filterEndpoint?: () => AxiosPromise<any>;
+  filterEndpoint?: () => AxiosPromise<unknown>;
   // initialFilters?: Filter[]; // TODO FIX ME
   initialFilters?: unknown[];
   initialSortBy?: string;
@@ -49,7 +49,7 @@ interface FancyPantsTablePropsBase<T extends Identifiable> {
   size?: 'small';
   emptyStateMessage: string;
   selected?: T[];
-  setSelected?: React.Dispatch<React.SetStateAction<T[]>>;
+  setSelected?: Dispatch<SetStateAction<T[]>>;
   filterSort?: FilterSortProps;
   pagination?: PaginationProps;
   onRowClick?: (row: T) => void;

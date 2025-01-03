@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import { EFilterOperator } from '@/generated/api-client';
 
 interface FetchOptionsParams {
   searchField: string;
@@ -22,7 +21,7 @@ export function useMultiFetchOptions({
         filters: [
           {
             field: searchField,
-            operator: EFilterOperator.Like,
+            // operator: EFilterOperator.Like, // TODO FIX ME
             value: searchQuery,
           },
         ],

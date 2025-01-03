@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import HorizontalLinearStepper from '@Components/HorizontalLinearStepper';
 
 // Utility wrapper to manage activeStep state
